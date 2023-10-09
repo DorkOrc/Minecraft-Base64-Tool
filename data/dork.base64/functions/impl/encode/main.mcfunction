@@ -22,3 +22,9 @@ data modify storage dork.base64:temp args.encode.converting set from storage dor
 execute if score .length dork.temp matches 1 run data modify storage dork.base64:temp args.encode.chars set string storage dork.base64:temp args.encode.converting 0 1
 execute if score .length dork.temp matches 2 run data modify storage dork.base64:temp args.encode.chars set string storage dork.base64:temp args.encode.converting 0 2
 execute if score .length dork.temp matches 3.. run data modify storage dork.base64:temp args.encode.chars set string storage dork.base64:temp args.encode.converting 0 3
+
+# append padding
+execute if score .success dork.temp matches 1 run function dork.base64:impl/encode/add_padding/append with storage dork.base64:temp args.encode
+execute if score .success dork.temp matches 0 run data remove storage dork.base64:io encode.output
+
+execute if score .success dork.temp matches 1 run data modify storage dork.base64:io encode.output set from storage dork.base64:temp args.encode.output
