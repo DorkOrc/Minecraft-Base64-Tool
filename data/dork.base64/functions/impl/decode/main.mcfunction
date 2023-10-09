@@ -3,6 +3,7 @@
 scoreboard players set .success dork.temp 1
 execute store result score .length dork.temp run data get storage dork.base64:io decode.input
 scoreboard players set .index dork.temp 0
+scoreboard players set .continue dork.temp 1
 
 data modify storage dork.base64:temp args.decode set value {output:"",binary:"","converted":"",terminator_length:1}
 execute if score .check_for_terminator dork.temp matches 1 store result storage dork.base64:temp args.decode.terminator_length int 1 run data get storage dork.base64:io decode.terminator
