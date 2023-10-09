@@ -37,13 +37,14 @@ function dork.base64:api/decode/until {terminator: ",", include_terminator: true
 # --> {"foo": 1,
 ```
 ## Getting the Current Unix Timestamp
-You can use this API to get the system time in the form of a "Unix Timestamp" or "Unix Epoch Timestamp" which is the number of seconds since midnight UTC on the 1st January 1970. 
+You can use this API to get the system time in the form of a "Unix Timestamp" or "Unix Epoch Timestamp" which is the number of seconds (or milliseconds) since midnight UTC on the 1st January 1970. 
 First you must generate a player head which contains this information. You can use a loot table (which requires an online player) or you can run `/setblock <pos> player_head{SkullOwner:{Name:"<username>"}}`.
 From there you can copy the relevant base64-encoded string at path `SkullOwner.Properties.textures[0].Value` in the item or block to `storage dork.base64:io decode.input`, and run the following command:
 ```
 function dork.base64:api/decode/until {terminator: ",", include_terminator: false}
 ```
 Since the encoded JSON is always generated in the same form, the timestamp will always be the number just before the first comma in the string. From here, you can convert the JSON to NBT using a macro function, and from there you can store the timstamp to wherever you need.
+**Note**: the timestamp stored in the JSON is the number of _milliseconds_ since the Unix Epoch, so the value is larger than an integer so would get stored as a `long` in NBT and overflows as a score. However, you can use `/data modify ... set string ... <min> <max>` to cut off the last 3 digits which effectively divides it by 1000, converting it to seconds.
 ## Limitations
 
 - This heavily uses the new "macro" features in Minecraft 1.20.2, so will not work in any prior version.
