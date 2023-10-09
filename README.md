@@ -1,6 +1,6 @@
 
 # Minecraft-Base64-Tool
-A Minecraft 1.20.2 data pack that provides an API for converting a Base64 encoded string of ASCII characters back into its ASCII form. This will be particularly useful for reading the texture properties data in player heads which gives you access to the system time as a Unix Timestamp. The pack may be extended to allow for encoding to base64 in the future. 
+A data pack for Minecraft 1.20.2+ that provides an API for converting a Base64 encoded string of ASCII characters back into its ASCII form. This will be particularly useful for reading the texture properties data in player heads which gives you access to the system time as a Unix Timestamp. The pack may be extended to allow for encoding to base64 in the future. 
 
 ## How to Use
 There are a few options for inputting data into the converter. The output of all the functions will always be at `storage dork.base64:io decode.output`. All the functions will return 1 if they successfully decoded the string, and 0 if an error occurred.
@@ -52,3 +52,10 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 - Characters with an encoding value less than 32 will be ignored. This includes newlines and horizontal tabs.
 - If the length of the underlying binary value is not divisible by 8, any left over digits will be ignored.
 - If the input string contains any characters other than `A-Z`, `a-z`, `0-9`, `+`, `/`, or `=`, there will be no outputted value, and `decode/get` will print an error message showing you the position of the illegal character. 
+
+## Supported Versions
+- Releases:
+  - `1.20.2`
+- Pack formats (snapshots):
+  - `18` (`1.20.2-pre1`-`1.20.2`)
+  - `19` (`23w40a`-)
