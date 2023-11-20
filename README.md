@@ -3,7 +3,13 @@
 A data pack for Minecraft 1.20.2+ that provides an API for converting a Base64 encoded string of ASCII characters back into its ASCII form. This will be particularly useful for reading the texture properties data in player heads which gives you access to the system time as a Unix Timestamp. The pack may be extended to allow for encoding to base64 in the future. 
 
 ## How to Use
-There are a few options for inputting data into the converter. The output of all the functions will always be at `storage dork.base64:io decode.output`. All the functions will return 1 if they successfully decoded the string, and 0 if an error occurred.
+There are a few options for inputting data into the converter. The output of all the functions will always be at `storage dork.base64:io decode.output` or `storage dork.base64:io encode.output`. All the functions will return 1 if they successfully decoded / encoded the string, and 0 if an error occurred.
+
+### encode
+This will just encode the string entered into the function.
+```
+function dork.base64:api/encode {input:"Hello World"}
+```
 
 ### decode
 This will just decode the string entered into the function.
@@ -48,6 +54,13 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 ## Limitations
 
 - This heavily uses the new "macro" features in Minecraft 1.20.2, so will not work in any prior version.
+- Due to size limitations, the encoding array is stored inside an item in an armor stand within a structure. This structure is used only during load / reload of this datapack. The armorstand is instantly killed off once the encoding array is placed into stroage preventing any chunk-corruption issues.
+
+### Encoding
+- This library might require at least 3GB of RAM allocated to be able to encode a string, this is to allow a large array for the fastest encoding possible.
+
+
+### Decoding
 - This currently only decodes ASCII characters so, despite reading 8 bits for each character, extended ASCII characters will be ignored.
 - Characters with an encoding value less than 32 will be ignored. This includes newlines and horizontal tabs.
 - If the length of the underlying binary value is not divisible by 8, any left over digits will be ignored.
