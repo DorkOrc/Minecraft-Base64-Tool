@@ -62,7 +62,7 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 - This heavily uses the new "macro" features in Minecraft 1.20.2, so will not work in any prior version.
 
 ### Encoding
-- Due to size limitations, the encoding array is stored inside an item in an armor stand within a structure. This structure is used only during load / reload of this datapack. The armorstand is instantly killed off once the encoding array is placed into stroage preventing any chunk-corruption issues.
+- Due to size limitations, the encoding array is stored inside an item in an armor stand within a structure. This structure is used only during load / reload of this datapack. The armorstand is instantly killed off once the encoding array is placed into stroage preventing any chunk-corruption issues. Due to this, the datapack will need at least 1GB of RAM to load the datapack correctly.
 - If the input string contains any characters other than below (space included) the function will return `0`: 
 ```
 0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz /@_~^!#{:}$%&'()|*+,-.;<=>?["\]
@@ -80,4 +80,5 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
   - `1.20.2`
 - Pack formats (snapshots):
   - `18` (`1.20.2-pre1`-`1.20.2`)
-  - `19` (`23w40a`-)
+  - `19` (`23w40a`-`23w46a`)
+  - `26` (`1.20.3-pre1`-)
