@@ -10,7 +10,10 @@
 	"overlays": {
 		"entries": [
 			{
-				"formats": 19,
+				"formats": {
+					"min_inclusive": 19,
+					"max_inclusive": 26
+				},
 				"directory": "format_19"
 			}
 		]
