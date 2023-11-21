@@ -10,6 +10,12 @@ This will just encode the string entered into the function.
 ```
 function dork.base64:api/encode {input:"Hello World"}
 ```
+### encode/get
+To simply see the converted result in chat, you can use `/function dork.base64:api/encode/get`. Running this from chat will give you the result of the encoded string with the ability to copy the output, or if the string is not a valid alpha-numeric (with puncuation) characters, an error will print out.
+```
+/function dork.base64:api/encode/get {input:"hello world"}
+```
+![Preview](https://cdn.discordapp.com/attachments/1154232908123475968/1176488921111220234/image.png)
 
 ### decode
 This will just decode the string entered into the function.
@@ -54,10 +60,13 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 ## Limitations
 
 - This heavily uses the new "macro" features in Minecraft 1.20.2, so will not work in any prior version.
-- Due to size limitations, the encoding array is stored inside an item in an armor stand within a structure. This structure is used only during load / reload of this datapack. The armorstand is instantly killed off once the encoding array is placed into stroage preventing any chunk-corruption issues.
 
 ### Encoding
-- This library might require at least 3GB of RAM allocated to be able to encode a string, this is to allow a large array for the fastest encoding possible.
+- Due to size limitations, the encoding array is stored inside an item in an armor stand within a structure. This structure is used only during load / reload of this datapack. The armorstand is instantly killed off once the encoding array is placed into stroage preventing any chunk-corruption issues.
+- If the input string contains any characters other than below (space included) the function will return `0`: 
+```
+0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz /@_~^!#{:}$%&'()|*+,-.;<=>?["\]
+```
 
 
 ### Decoding
