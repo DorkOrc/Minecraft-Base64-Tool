@@ -3,7 +3,19 @@
 A data pack for Minecraft 1.20.2+ that provides an API for converting a Base64 encoded string of ASCII characters back into its ASCII form. This will be particularly useful for reading the texture properties data in player heads which gives you access to the system time as a Unix Timestamp. The pack may be extended to allow for encoding to base64 in the future. 
 
 ## How to Use
-There are a few options for inputting data into the converter. The output of all the functions will always be at `storage dork.base64:io decode.output`. All the functions will return 1 if they successfully decoded the string, and 0 if an error occurred.
+There are a few options for inputting data into the converter. The output of all the functions will always be at `storage dork.base64:io decode.output` or `storage dork.base64:io encode.output`. All the functions will return 1 if they successfully decoded / encoded the string, and 0 if an error occurred.
+
+### encode
+This will just encode the string entered into the function.
+```
+function dork.base64:api/encode {input:"Hello World"}
+```
+### encode/get
+To simply see the converted result in chat, you can use `/function dork.base64:api/encode/get`. Running this from chat will give you the result of the encoded string with the ability to copy the output, or if the string is not a valid alpha-numeric (with puncuation) characters, an error will print out.
+```
+/function dork.base64:api/encode/get {input:"hello world"}
+```
+![Preview](https://cdn.discordapp.com/attachments/1154232908123475968/1176488921111220234/image.png)
 
 ### decode
 This will just decode the string entered into the function.
@@ -48,6 +60,16 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 ## Limitations
 
 - This heavily uses the new "macro" features in Minecraft 1.20.2, so will not work in any prior version.
+
+### Encoding
+- Due to size limitations, the encoding array is stored inside an item in an armor stand within a structure. This structure is used only during load / reload of this datapack. The armorstand is instantly killed off once the encoding array is placed into stroage preventing any chunk-corruption issues. Due to this, the datapack will need at least 1GB of RAM to load the datapack correctly.
+- If the input string contains any characters other than below (space included) the function will return `0`: 
+```
+0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz /@_~^!#{:}$%&'()|*+,-.;<=>?["\]
+```
+
+
+### Decoding
 - This currently only decodes ASCII characters so, despite reading 8 bits for each character, extended ASCII characters will be ignored.
 - Characters with an encoding value less than 32 will be ignored. This includes newlines and horizontal tabs.
 - If the length of the underlying binary value is not divisible by 8, any left over digits will be ignored.
@@ -56,6 +78,8 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 ## Supported Versions
 - Releases:
   - `1.20.2`
+  - `1.20.3`
 - Pack formats (snapshots):
   - `18` (`1.20.2-pre1`-`1.20.2`)
-  - `19` (`23w40a`-)
+  - `19` (`23w40a`-`23w46a`)
+  - `26` (`1.20.3-pre1`-)

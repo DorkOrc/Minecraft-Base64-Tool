@@ -1,0 +1,2 @@
+# arguments: input, output
+$tellraw @s ["Encoded '",{"text":"$(input)","color":"aqua"},"' to '",{"text":"$(output)","color":"green","hoverEvent":{"action": "show_text","value": "Copy to Clipboard"},"clickEvent":{"action":"copy_to_clipboard","value":"$(output)"}},"'"]

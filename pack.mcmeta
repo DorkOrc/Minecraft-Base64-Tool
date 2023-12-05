@@ -1,16 +1,19 @@
 {
 	"pack": {
-		"description": "Base64 to ASCII Decoder by DorkOrc",
+		"description": {"text":"Authors:\n- DorkOrc\n- Coppertine"},
 		"pack_format": 18,
 		"supported_formats": {
 			"min_inclusive": 18,
-			"max_inclusive": 19
+			"max_inclusive": 26
 		}
 	},
 	"overlays": {
 		"entries": [
 			{
-				"formats": 19,
+				"formats": {
+					"min_inclusive": 19,
+					"max_inclusive": 26
+				},
 				"directory": "format_19"
 			}
 		]
