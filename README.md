@@ -40,14 +40,21 @@ function dork.base64:api/decode/until {terminator: ",", include_terminator: true
 ### encode
 This will just encode the string entered into the function.
 ```
-function dork.base64:api/encode {input:"Hello World"}
+function dork.base64:api/encode {input:"hello world"}
 ```
 ### encode/get
 To simply see the converted result in chat, you can use `/function dork.base64:api/encode/get`. Running this from chat will give you the result of the encoded string with the ability to copy the output, or if the string is not a valid alpha-numeric (with puncuation) characters, an error will print out.
 ```
-/function dork.base64:api/encode/get {input:"hello world"}
+function dork.base64:api/encode/get {input:"hello world"}
 ```
 ![Preview](https://cdn.discordapp.com/attachments/1154232908123475968/1176488921111220234/image.png)
+### encode/direct
+This will encode the contents of `storage dork.base64:io decode.input`.
+```
+data modify storage dork.base64:io encode.input set value "hello world"
+function dork.base64:api/encode/direct
+# --> aGVsbG8gd29ybGQ=
+```
 
 ## Getting the Current Unix Timestamp
 You can use this API to get the system time in the form of a "Unix Timestamp" or "Unix Epoch Timestamp" which is the number of seconds (or milliseconds) since midnight UTC on the 1st January 1970. 
