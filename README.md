@@ -78,6 +78,7 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 ## Supported Versions
 - Releases:
   - `1.20.2`
+  - `1.20.3`
 - Pack formats (snapshots):
   - `18` (`1.20.2-pre1`-`1.20.2`)
   - `19` (`23w40a`-`23w46a`)
