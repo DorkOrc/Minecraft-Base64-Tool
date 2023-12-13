@@ -82,11 +82,11 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
 0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz /@_~^!#{:}$%&'()|*+,-.;<=>?["\]
 ```
 
-## Supported Versions
+## Supported Minecraft Versions
 - Releases:
   - `1.20.2`
   - `1.20.3`
-- Pack formats (snapshots):
+  - `1.20.4`
+- Pack Formats:
   - `18` (`1.20.2-pre1`-`1.20.2`)
-  - `19` (`23w40a`-`23w46a`)
-  - `26` (`1.20.3-pre1`-)
+  - `19-26` (`23w40a`-`1.20.4`)
