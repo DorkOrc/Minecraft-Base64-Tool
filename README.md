@@ -87,6 +87,8 @@ Since the encoded JSON is always generated in the same form, the timestamp will 
   - `1.20.2`
   - `1.20.3`
   - `1.20.4`
-- Pack Formats:
-  - `18` (`1.20.2-pre1`-`1.20.2`)
-  - `19-26` (`23w40a`-`1.20.4`)
+  - `1.20.5`
+  - `1.20.6`
+  - `1.21`
+  - `1.21.1`
+  - `1.21.2`

@@ -8,7 +8,7 @@ scoreboard players set .index dork.temp 0
 scoreboard players set .continue dork.temp 1
 
 # converting is purely used as a copy of input as it will iterate and remove 3 chars at a time.
-data modify storage dork.base64:temp args.encode set value {output:"","converted":"",padding:"",converting:"",chars:""}
+data modify storage dork.base64:temp args.encode set value {output:"",converted:"",padding:"",converting:"",char1:"",char2:"",char3:""}
 
 # Need to check for amount of padding.
 scoreboard players operation .chunk dork.temp = .length dork.temp
@@ -19,9 +19,17 @@ execute if score .chunk dork.temp matches 2 run function dork.base64:impl/encode
 
 scoreboard players set .chunk dork.temp 0
 data modify storage dork.base64:temp args.encode.converting set from storage dork.base64:io encode.input
-execute if score .length dork.temp matches 1 run data modify storage dork.base64:temp args.encode.chars set string storage dork.base64:temp args.encode.converting 0 1
-execute if score .length dork.temp matches 2 run data modify storage dork.base64:temp args.encode.chars set string storage dork.base64:temp args.encode.converting 0 2
-execute if score .length dork.temp matches 3.. run data modify storage dork.base64:temp args.encode.chars set string storage dork.base64:temp args.encode.converting 0 3
+
+data modify storage dork.base64:temp args.encode merge value {char1:"",char2:"",char3:""}
+execute if score .length dork.temp matches 1.. run data modify storage dork.base64:temp args.encode.char1 set string storage dork.base64:temp args.encode.converting 0 1
+execute if score .length dork.temp matches 1.. if data storage dork.base64:temp args.encode{char1:'"'} run data modify storage dork.base64:temp args.encode.char1 set value '\\"'
+execute if score .length dork.temp matches 1.. if data storage dork.base64:temp args.encode{char1:'\\'} run data modify storage dork.base64:temp args.encode.char1 set value '\\\\'
+execute if score .length dork.temp matches 2.. run data modify storage dork.base64:temp args.encode.char2 set string storage dork.base64:temp args.encode.converting 1 2
+execute if score .length dork.temp matches 2.. if data storage dork.base64:temp args.encode{char2:'"'} run data modify storage dork.base64:temp args.encode.char2 set value '\\"'
+execute if score .length dork.temp matches 2.. if data storage dork.base64:temp args.encode{char2:'\\'} run data modify storage dork.base64:temp args.encode.char2 set value '\\\\'
+execute if score .length dork.temp matches 3.. run data modify storage dork.base64:temp args.encode.char3 set string storage dork.base64:temp args.encode.converting 2 3
+execute if score .length dork.temp matches 3.. if data storage dork.base64:temp args.encode{char3:'"'} run data modify storage dork.base64:temp args.encode.char3 set value '\\"'
+execute if score .length dork.temp matches 3.. if data storage dork.base64:temp args.encode{char3:'\\'} run data modify storage dork.base64:temp args.encode.char3 set value '\\\\'
 
 execute if score .index dork.temp < .length dork.temp run function dork.base64:impl/encode/loop with storage dork.base64:temp args.encode
 
